@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.9
 
 import sys, time, requests
 from os.path import exists
@@ -19,7 +19,7 @@ def download_input(d):
     if not exists(f'input/input{d}.txt'):
         with open('session') as fh:
             session_id = fh.read()
-        request = requests.get(f'https://adventofcode.com/2021/day/{1}/input', cookies={'session': session_id})
+        request = requests.get(f'https://adventofcode.com/2021/day/{d}/input', cookies={'session': session_id})
         with open(f'input/input{d}.txt', 'wb') as fh:
             fh.write(request.content)
 
