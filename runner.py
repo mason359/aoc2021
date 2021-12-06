@@ -3,7 +3,7 @@
 import sys, time, requests
 from os.path import exists
 
-def run_problem(d, p, do_submit):
+def run_problem(d, p, do_submit=False):
     download_input(d)
     day = __import__(f'day{d}')
     problem = day.problem1 if p == 1 else day.problem2
