@@ -2,8 +2,8 @@ from aocutils import get_raw
 
 def problem1():
     crabs = sorted([int(pos) for pos in get_raw(7).split(',')])
-    mid = int(len(crabs) / 2)
-    align = round((crabs[mid - 1] + crabs[mid]) / 2)
+    mid = len(crabs) // 2
+    align = (crabs[mid - 1] + crabs[mid]) // 2
     return sum(abs(pos - align) for pos in crabs)
 
 def problem2():
