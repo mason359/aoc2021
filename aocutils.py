@@ -5,7 +5,7 @@ def get_nums(day):
 
 def get_lines(day):
     with open(f'input/input{day}.txt') as fh:
-        return fh.readlines()
+        return [line.strip() for line in fh.readlines()]
 
 def get_raw(day):
     with open(f'input/input{day}.txt') as fh:

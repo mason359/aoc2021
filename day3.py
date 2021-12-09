@@ -2,7 +2,7 @@ from aocutils import get_lines
 
 def problem1():
     lines = get_lines(3)
-    bits = len(lines[0]) - 1
+    bits = len(lines[0])
     nums = [int(num, 2) for num in lines]
     gamma = 0
     for i in range(bits - 1, -1, -1):
@@ -11,7 +11,7 @@ def problem1():
 
 def problem2():
     lines = get_lines(3)
-    bits = len(lines[0]) - 1
+    bits = len(lines[0])
     o2 = [int(num, 2) for num in lines]
     co2 = [int(num, 2) for num in lines]
     i = bits - 1

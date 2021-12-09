@@ -14,7 +14,7 @@ def problem2():
     return prod(sorted([get_basin_size(map, point) for point in points])[-3:])
 
 def get_map():
-    map = [[9] + [int(i) for i in line.strip()] + [9] for line in get_lines(9)]
+    map = [[9] + [int(i) for i in line] + [9] for line in get_lines(9)]
     top = [[9] * len(map[0])]
     return top + map + top
 
@@ -31,7 +31,7 @@ def get_basin_size(map, start):
     queue = [start]
     while queue:
         curr = queue.pop(0)
-        if curr not in visited:
+        if curr in visited:
             continue
         visited.add(curr)
         for n in NEIGHBORS:
