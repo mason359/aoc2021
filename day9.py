@@ -6,7 +6,7 @@ NEIGHBORS = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
 def problem1():
     map = get_map()
-    return sum(map[p[0]][p[1]] + 1 for p in get_low_points(map))
+    return sum(map[r][c] + 1 for r, c in get_low_points(map))
 
 def problem2():
     map = get_map()
@@ -22,7 +22,7 @@ def get_low_points(map):
     low_points = []
     for r in range(1, len(map) - 1):
         for c in range(1, len(map[0]) - 1):
-            if all(map[r][c] < map[r + n[0]][c + n[1]] for n in NEIGHBORS):
+            if all(map[r][c] < map[r + dr][c + dc] for dr, dc in NEIGHBORS):
                 low_points.append((r, c))
     return low_points
 
@@ -30,12 +30,11 @@ def get_basin_size(map, start):
     visited = set()
     queue = [start]
     while queue:
-        curr = queue.pop(0)
-        if curr in visited:
+        r, c = queue.pop(0)
+        if (r, c) in visited:
             continue
-        visited.add(curr)
-        for n in NEIGHBORS:
-            new = (curr[0] + n[0], curr[1] + n[1])
-            if map[new[0]][new[1]] < 9:
-                queue.append(new)
+        visited.add((r, c))
+        for dr, dc in NEIGHBORS:
+            if map[r + dr][c + dc] < 9:
+                queue.append((r + dr, c + dc))
     return len(visited)

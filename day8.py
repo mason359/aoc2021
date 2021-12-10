@@ -14,16 +14,17 @@ def problem2():
     return total
 
 def get_digit(digit, one, four):
-        if len(digit) in [2, 3, 4, 7]:
+    match len(digit):
+        case 2 | 3 | 4 | 7:
             return UNIQUE_LEN[len(digit)]
-        elif len(digit) == 5:
+        case 5:
             if all(c in digit for c in one):
                 return '3'
             elif sum(c in digit for c in four) == 3:
                 return '5'
             else:
                 return '2'
-        elif len(digit) == 6:
+        case 6:
             if all(c in digit for c in four):
                 return '9'
             elif all(c in digit for c in one):
