@@ -29,10 +29,7 @@ def get_transform(axis, line):
     return fold
 
 def reflect(line, value):
-    if value > line:
-        return 2 * line - value
-    else:
-        return value
+    return 2 * line - value if value > line else value
 
 def print_paper(points):
     maxx = max(points, key=lambda p: p[0])[0]
