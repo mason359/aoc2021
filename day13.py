@@ -4,7 +4,7 @@ from functools import reduce
 
 def problem1():
     points, folds = parse_input()
-    return len(set(folds[0](point) for point in points) - {None})
+    return len(set(folds[0](point) for point in points))
 
 def problem2():
     points, folds = parse_input()
@@ -21,8 +21,6 @@ def get_transform(axis, line):
     line = int(line)
 
     def fold(point):
-        if point is None:
-            return None
         if axis == 'x':
             return (reflect(line, point[0]), point[1])
         else:
@@ -33,7 +31,7 @@ def get_transform(axis, line):
 def reflect(line, value):
     if value > line:
         return 2 * line - value
-    elif value < line:
+    else:
         return value
 
 def print_paper(points):
