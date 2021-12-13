@@ -8,7 +8,7 @@ def problem1():
 
 def problem2():
     points, folds = parse_input()
-    points = set(reduce(lambda p, T: T(p), folds, point) for point in points)
+    points = set(reduce(lambda p, F: F(p), folds, point) for point in points)
     print_paper(points)
 
 def parse_input():
@@ -35,10 +35,4 @@ def print_paper(points):
     maxx = max(points, key=lambda p: p[0])[0]
     maxy = max(points, key=lambda p: p[1])[1]
     for y in range(maxy + 1):
-        line = ''
-        for x in range(maxx + 1):
-            if (x, y) in points:
-                line += '█'
-            else:
-                line += ' '
-        print(line)
+        print(''.join([(' ', '█')[(x, y) in points] for x in range(maxx + 1)]))
