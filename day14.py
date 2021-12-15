@@ -1,6 +1,6 @@
 from aocutils import get_raw
 
-from collections import defaultdict
+from collections import defaultdict, Counter
 from math import ceil
 
 def problem1():
@@ -12,7 +12,7 @@ def problem2():
 def simulate(steps):
     mapping, counts = parse_input()
     for _ in range(steps):
-        counts = defaultdict(int, {pair: sum(counts[starter] for starter in starters) for pair, starters in mapping.items()})
+        counts = Counter({pair: sum(counts[starter] for starter in starters) for pair, starters in mapping.items()})
     return calc_answer(counts)
 
 def parse_input():
@@ -22,13 +22,13 @@ def parse_input():
         pair, insert = rule.split(' -> ')
         mapping[pair[0] + insert].append(pair)
         mapping[insert + pair[1]].append(pair)
-    counts = defaultdict(int)
+    counts = Counter()
     for i in range(len(template) - 1):
         counts[template[i:i + 2]] += 1
     return mapping, counts
 
 def calc_answer(counts):
-    elements = defaultdict(int)
+    elements = Counter()
     for pair, count in counts.items():
         elements[pair[0]] += count
         elements[pair[1]] += count
