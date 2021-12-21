@@ -50,7 +50,6 @@ def explode(pair, depth=0):
         for i in range(2):
             removed = None
             if isinstance(pair[i], list) and (removed := explode(pair[i], depth + 1)):
-                # print(depth, removed, pair[~i])
                 if isinstance(pair[~i], list):
                     add_to_side(pair[~i], removed[~i], i)
                 else:
