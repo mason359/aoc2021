@@ -15,7 +15,6 @@ def reboot(small_region=False):
     total_on = 0
     for cube in cubes:
         total_on += run_step(cube, regions)
-    print(len(regions))
     return total_on
 
 def run_step(cube, regions):
